@@ -9,10 +9,10 @@ __pycache__/
 *$py.class
 
 # Base de datos local (para que el servidor cree la suya propia)
-db.sqlite3
+# db.sqlite3
 
 # Archivos subidos por los usuarios (Imágenes, PDFs, etc.)
-media/
+#media/
 
 # Archivos estáticos recolectados (se generan automáticamente en el servidor)
 staticfiles/
