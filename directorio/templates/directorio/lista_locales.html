@@ -1,0 +1,92 @@
+{% extends 'directorio/base.html' %}
+
+{% block title %}Todos los Locales - EnTuBarrio{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Todos los Locales</h1>
+    
+    <!-- Filtros -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Buscar</label>
+                    <input type="text" name="q" class="form-control" value="{{ busqueda|default:'' }}" placeholder="Nombre, dirección...">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Zona</label>
+                    <select name="zona" class="form-select">
+                        <option value="">Todas las zonas</option>
+                        {% for zona in zonas %}
+                        <option value="{{ zona.id }}" {% if zona.id|stringformat:"s" == zona_actual %}selected{% endif %}>
+                            {{ zona.nombre }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Categoría</label>
+                    <select name="categoria" class="form-select">
+                        <option value="">Todas las categorías</option>
+                        {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}" {% if categoria.id|stringformat:"s" == categoria_actual %}selected{% endif %}>
+                            {{ categoria.icono }} {{ categoria.nombre }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Resultados -->
+    <div class="row g-4">
+        {% for local in locales %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card card-local h-100">
+                {% if local.imagen %}
+                <img src="{{ local.imagen.url }}" class="card-img-top" alt="{{ local.nombre }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <i class="bi bi-shop display-1 text-muted"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <div class="mb-2">
+                        <span class="badge badge-zona">{{ local.zona.nombre }}</span>
+                        <span class="badge badge-categoria">{{ local.categoria.icono }} {{ local.categoria.nombre }}</span>
+                    </div>
+                    <h5 class="card-title">{{ local.nombre }}</h5>
+                    <p class="card-text small text-muted">{{ local.descripcion_corta }}</p>
+                    {% if local.horarios %}
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-clock-fill"></i> {{ local.horarios }}
+                    </div>
+                    {% endif %}
+                    {% if local.dato_curioso %}
+                    <div class="dato-curioso small">
+                        <i class="bi bi-lightbulb-fill text-warning"></i> <strong>Dato EnTuBarrio:</strong> {{ local.dato_curioso|truncatechars:100 }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer bg-white">
+                    <a href="{% url 'directorio:detalle_local' local.id %}" class="btn btn-outline-primary w-100">
+                        Ver detalles <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <i class="bi bi-info-circle"></i> No se encontraron locales con esos filtros.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

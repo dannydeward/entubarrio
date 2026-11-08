@@ -1,0 +1,19 @@
+{% extends 'directorio/base.html' %}
+{% block title %}Categorías - EnTuBarrio{% endblock %}
+{% block content %}
+<div class="container py-5 explorar-categorias">
+    <h1 class="mb-4">Explorar por Categorías</h1>
+    <div class="row g-4">
+        {% for categoria in categorias %}
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'directorio:locales_por_categoria' categoria.id %}" class="text-decoration-none">
+                <div class="card text-center p-4 h-100 card-local">
+                    <h4 class="mb-2">{{ categoria.icono }} {{ categoria.nombre }}</h4>
+                    <p class="text-muted mb-0">{{ categoria.total_locales }} locales</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

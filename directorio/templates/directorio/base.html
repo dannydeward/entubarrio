@@ -1,0 +1,121 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EnTuBarrio - La guía de la comunidad{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'directorio/css/styles.css' %}">
+</head>
+<body>
+
+    <!-- HERO HEADER -->
+    <header class="hero-header">
+        <div class="hero-container">
+            <div class="hero-left">
+                <img src="{% static 'directorio/img/logo3.png' %}" alt="EnTuBarrio" class="hero-logo">
+            </div>
+            <div class="hero-center">
+                <h1 class="hero-title">EN TU BARRIO</h1>
+                <p class="hero-subtitle">Encuentra lo que buscas cerca de ti: gastronomía, servicios y más.</p>
+            </div>
+            <nav class="hero-right">
+                <a href="/" class="menu-link {% if request.path == '/' %}active{% endif %}">Inicio</a>
+                <a href="/locales/" class="menu-link {% if 'locales' in request.path %}active{% endif %}">Locales</a>
+                <a href="/mapa/" class="menu-link {% if 'mapa' in request.path %}active{% endif %}">Mapa</a>
+                <a href="/zonas/" class="menu-link {% if 'zonas' in request.path %}active{% endif %}">Zonas</a>
+                <a href="/categorias/" class="menu-link {% if 'categorias' in request.path %}active{% endif %}">Categorías</a>
+                <a href="/promos/" class="menu-link">Promos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="main-layout">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 col-md-4">
+                    <aside class="sidebar-menu">
+                        <nav class="nav flex-column">
+                            <a href="/" class="nav-item {% if request.path == '/' %}active{% endif %}">
+                                <i class="bi bi-house-door-fill"></i> Inicio
+                            </a>
+                            <a href="/locales/" class="nav-item {% if 'locales' in request.path %}active{% endif %}">
+                                <i class="bi bi-list-ul"></i> Todos los locales
+                            </a>
+                            <a href="/mapa/" class="nav-item {% if 'mapa' in request.path %}active{% endif %}">
+                                <i class="bi bi-geo-alt-fill"></i> Mapa
+                            </a>
+                            <a href="/zonas/" class="nav-item {% if 'zonas' in request.path %}active{% endif %}">
+                                <i class="bi bi-map"></i> Zonas
+                            </a>
+                            <a href="/categorias/" class="nav-item {% if 'categorias' in request.path %}active{% endif %}">
+                                <i class="bi bi-grid-fill"></i> Categorías
+                            </a>
+                            <hr class="my-2">
+                            <a href="/promos/" class="nav-item">
+                                <i class="bi bi-tag-fill"></i> Promociones
+                            </a>
+                            <a href="/eventos/" class="nav-item">
+                                <i class="bi bi-calendar-event"></i> Eventos
+                            </a>
+                            
+                        </nav>
+                        <div class="sidebar-filters mt-4">
+                            <h6 class="sidebar-section-title mb-2">CARACTERÍSTICAS</h6>
+                            <div class="filter-tags">
+                                <span class="filter-tag"><i class="bi bi-sun"></i> Terraza</span>
+                                <span class="filter-tag"><i class="bi bi-heart"></i> Pet friendly</span>
+                                <span class="filter-tag"><i class="bi bi-music-note-beamed"></i> Música en vivo</span>
+                                <span class="filter-tag"><i class="bi bi-wifi"></i> Wifi</span>
+                                <span class="filter-tag"><i class="bi bi-stars"></i> Rooftop</span>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Contenido principal -->
+                <div class="col-lg-9 col-md-8">
+                    <main class="main-content-area">
+                        {% block content %}{% endblock %}
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <!-- Izquierda: Logo + Slogan + Créditos -->
+            <div class="footer-left">
+                <img src="{% static 'directorio/img/logo sin fondo.png' %}" alt="EnTuBarrio" class="footer-logo">
+                <p class="footer-slogan">Todo lo que buscas cerca de ti</p>
+                <p class="footer-credit">Diseñado por Danny Ramirez</p>
+            </div>
+            
+            <!-- Derecha: Datos de contacto y Link -->
+            <div class="footer-right">
+                <div class="footer-contact-item">
+                    <i class="bi bi-envelope-fill"></i> dataconeccion@gmail.com
+                </div>
+                <div class="footer-contact-item">
+                    <i class="bi bi-telephone-fill"></i> +54 11 1234-5678
+                </div>
+                <div class="footer-contact-item">
+                    <i class="bi bi-geo-alt-fill"></i> Buenos Aires, Argentina
+                </div>
+                <a href="/contacto/" class="footer-cta-link">
+                    ¿Quieres aparecer en EnTuBarrio?
+                </a>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

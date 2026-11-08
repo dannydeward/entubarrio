@@ -1,0 +1,146 @@
+{% extends 'directorio/base.html' %}
+
+{% block title %}{{ local.nombre }} - EnTuBarrio{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'directorio:inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'directorio:lista_locales' %}">Locales</a></li>
+            <li class="breadcrumb-item active">{{ local.nombre }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Imagen Principal -->
+        <div class="col-md-6 mb-4">
+            {% if local.imagen %}
+                <img src="{{ local.imagen.url }}" class="img-fluid rounded shadow-sm" alt="{{ local.nombre }}" style="width: 100%; max-height: 400px; object-fit: cover;">
+            {% else %}
+                <div class="bg-light rounded d-flex align-items-center justify-content-center shadow-sm" style="height: 400px;">
+                    <i class="bi bi-shop display-1 text-muted"></i>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Información -->
+        <div class="col-md-6">
+            <div class="mb-2">
+                <span class="badge bg-warning text-dark fs-6 me-1">{{ local.zona.nombre }}</span>
+                <span class="badge bg-secondary fs-6">{{ local.categoria.icono }} {{ local.categoria.nombre }}</span>
+            </div>
+            
+            <h1 class="display-6 fw-bold mb-3">{{ local.nombre }}</h1>
+            
+            <p class="lead">{{ local.descripcion_corta }}</p>
+            
+            {% if local.descripcion_completa %}
+            <div class="mb-4">
+                {{ local.descripcion_completa|linebreaks }}
+            </div>
+            {% endif %}
+
+            <!-- Dato EnTuBarrio -->
+            {% if local.dato_curioso %}
+            <div class="alert alert-warning mb-4">
+                <h6 class="mb-1"><i class="bi bi-lightbulb-fill"></i> Dato EnTuBarrio</h6>
+                <p class="mb-0 small">{{ local.dato_curioso }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Contacto -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-white fw-bold">
+                    <i class="bi bi-telephone-fill text-primary"></i> Contacto
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        {% if local.direccion %}
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill text-danger"></i> <strong>Dirección:</strong> {{ local.direccion }}</li>
+                        {% endif %}
+                        {% if local.whatsapp %}
+                        <li class="mb-2">
+                            <i class="bi bi-whatsapp text-success"></i> <strong>WhatsApp:</strong> 
+                            <a href="https://wa.me/{{ local.whatsapp|cut:'+'|cut:' ' }}" target="_blank" class="text-decoration-none">{{ local.whatsapp }}</a>
+                        </li>
+                        {% endif %}
+                        {% if local.telefono %}
+                        <li class="mb-2"><i class="bi bi-telephone-fill text-primary"></i> <strong>Teléfono:</strong> {{ local.telefono }}</li>
+                        {% endif %}
+                        {% if local.instagram %}
+                        <li class="mb-2">
+                            <i class="bi bi-instagram text-danger"></i> <strong>Instagram:</strong> 
+                            <a href="https://instagram.com/{{ local.instagram|cut:'@'|cut:' ' }}" target="_blank" class="text-decoration-none">@{{ local.instagram|cut:'@'|cut:' ' }}</a>
+                        </li>
+                        {% endif %}
+                        {% if local.email %}
+                        <li class="mb-2"><i class="bi bi-envelope-fill text-secondary"></i> <strong>Email:</strong> <a href="mailto:{{ local.email }}" class="text-decoration-none">{{ local.email }}</a></li>
+                        {% endif %}
+                        {% if local.sitio_web %}
+                        <li class="mb-2"><i class="bi bi-globe text-primary"></i> <strong>Web:</strong> <a href="{{ local.sitio_web }}" target="_blank" class="text-decoration-none">Visitar sitio</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALERÍA DE FOTOS ADICIONALES -->
+    {% if local.foto1 or local.foto2 or local.foto3 %}
+    <div class="row g-3 mb-4">
+        {% if local.foto1 %}
+        <div class="col-md-4">
+            <img src="{{ local.foto1.url }}" class="img-fluid rounded shadow-sm" alt="Foto 1" style="width: 100%; height: 250px; object-fit: cover; cursor: pointer;" onclick="window.open(this.src)">
+        </div>
+        {% endif %}
+        {% if local.foto2 %}
+        <div class="col-md-4">
+            <img src="{{ local.foto2.url }}" class="img-fluid rounded shadow-sm" alt="Foto 2" style="width: 100%; height: 250px; object-fit: cover; cursor: pointer;" onclick="window.open(this.src)">
+        </div>
+        {% endif %}
+        {% if local.foto3 %}
+        <div class="col-md-4">
+            <img src="{{ local.foto3.url }}" class="img-fluid rounded shadow-sm" alt="Foto 3" style="width: 100%; height: 250px; object-fit: cover; cursor: pointer;" onclick="window.open(this.src)">
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Horarios (Campo de texto libre) -->
+    {% if local.horarios %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-white fw-bold">
+            <i class="bi bi-clock-fill text-primary"></i> Horarios de Atención
+        </div>
+        <div class="card-body">
+            <p class="mb-0">{{ local.horarios }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Promociones -->
+    {% if promos_activas %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-danger text-white fw-bold">
+            <i class="bi bi-tag-fill"></i> Promociones Activas
+        </div>
+        <div class="card-body">
+            {% for promo in promos_activas %}
+            <div class="border-start border-4 border-danger ps-3 mb-3 pb-3 border-bottom">
+                <h6 class="mb-1 fw-bold">{{ promo.titulo }}</h6>
+                <p class="mb-1">{{ promo.descripcion }}</p>
+                {% if promo.precio_especial %}
+                <p class="h5 text-danger fw-bold mb-1">{{ promo.precio_especial }}</p>
+                {% endif %}
+                <small class="text-muted">
+                    Válido del {{ promo.fecha_inicio|date:"d/m/Y" }} al {{ promo.fecha_fin|date:"d/m/Y" }}
+                </small>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
