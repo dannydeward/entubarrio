@@ -25,7 +25,7 @@
                     
                     <!-- IMAGEN DEL LOCAL -->
                     {% if local.imagen %}
-                        <<img src="{{ local.imagen.url }}" alt="{{ local.nombre }}" class="img-fluid rounded shadow-sm" style="width: 100%; max-height: 400px; object-fit: cover;">
+                        <img src="{{ local.imagen.url }}" alt="{{ local.nombre }}" class="img-fluid rounded shadow-sm" style="width: 100%; max-height: 400px; object-fit: cover;">
                     {% elif local.foto1 %}
                         <img src="{{ local.foto1.url }}" alt="{{ local.nombre }}" style="width: 90%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                     {% else %}
