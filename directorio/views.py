@@ -81,4 +81,74 @@ def lista_zonas(request):
     """Lista de todas las zonas"""
     zonas = Zona.objects.all()
     
-    for zona in zonas
+    for zona in zonas:
+        zona.total_locales = Local.objects.filter(zona=zona, es_activo=True).count()
+    
+    context = {
+        'zonas': zonas,
+    }
+    return render(request, 'directorio/lista_zonas.html', context)
+
+
+def locales_por_zona(request, zona_id):
+    """Locales filtrados por zona"""
+    zona = get_object_or_404(Zona, id=zona_id)
+    locales = Local.objects.filter(zona=zona, es_activo=True).select_related('zona', 'categoria')
+    
+    zonas = Zona.objects.all()
+    categorias = Categoria.objects.all()
+    
+    context = {
+        'locales': locales,
+        'zonas': zonas,
+        'categorias': categorias,
+        'titulo': f'Locales en {zona.nombre}',
+    }
+    return render(request, 'directorio/lista_locales.html', context)
+
+
+def locales_por_categoria(request, categoria_id):
+    """Locales filtrados por categoría"""
+    categoria = get_object_or_404(Categoria, id=categoria_id)
+    locales = Local.objects.filter(categoria=categoria, es_activo=True).select_related('zona', 'categoria')
+    
+    zonas = Zona.objects.all()
+    categorias = Categoria.objects.all()
+    
+    context = {
+        'locales': locales,
+        'zonas': zonas,
+        'categorias': categorias,
+        'titulo': f'Locales en {categoria.nombre}',
+    }
+    return render(request, 'directorio/lista_locales.html', context)
+
+
+def lista_categorias(request):
+    """Lista de todas las categorías"""
+    categorias = Categoria.objects.all()
+    
+    for categoria in categorias:
+        categoria.total_locales = Local.objects.filter(categoria=categoria, es_activo=True).count()
+    
+    context = {
+        'categorias': categorias,
+    }
+    return render(request, 'directorio/lista_categorias.html', context)
+
+
+def mapa(request):
+    return render(request, 'directorio/mapa.html')
+
+
+def lista_promos(request):
+    return render(request, 'directorio/lista_promos.html')
+
+
+def eventos(request):
+    return render(request, 'directorio/eventos.html')
+
+
+def en_construccion(request):
+    """Página genérica para secciones que aún no están listas"""
+    return render(request, 'directorio/en_construccion.html')
