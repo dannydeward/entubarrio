@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage'
     "directorio",
     
 ]
@@ -140,11 +142,16 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Configuración de medios (imágenes subidas)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/ 'media'
+
 
 TATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'wdeufiiu',
+    'API_KEY': '572733275461677',
+    'API_SECRET': 'sTozNrIkr7L0sLRcaWpRqwGdqUQ',
+}
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = '/media/'
 
