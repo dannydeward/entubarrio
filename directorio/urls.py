@@ -20,4 +20,5 @@ urlpatterns = [
     path('eventos/', views.en_construccion, name='eventos'),
     path('contacto/', views.en_construccion, name='contacto'),
     path('crear-admin/', views.crear_admin),
+    path('migrar-fotos/', views.migrar_fotos),
 ]

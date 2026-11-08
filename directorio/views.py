@@ -163,3 +163,39 @@ def crear_admin(request):
     User.objects.filter(username='admin').delete()
     User.objects.create_superuser('admin', 'dataconeccion@gmail.com', 'Admin123456')
     return HttpResponse("Listo. Usuario: admin | Contraseña: Admin123456")
+
+
+
+import os
+import cloudinary
+import cloudinary.uploader
+from django.conf import settings
+from django.http import HttpResponse
+
+def migrar_fotos(request):
+    cloudinary.config(
+        cloud_name="wdeufiiu",
+        api_key="572733275461677",
+        api_secret="sTozNrIkr7L0sLRcaWpRqwGdqUQ"
+    )
+    
+    from directorio.models import Local
+    mensajes = []
+    
+    for local in Local.objects.all():
+        if local.imagen and 'res.cloudinary.com' not in str(local.imagen):
+            ruta = os.path.join(settings.MEDIA_ROOT, str(local.imagen).replace('/media/', ''))
+            if os.path.exists(ruta):
+                try:
+                    res = cloudinary.uploader.upload(ruta, folder="locales")
+                    local.imagen = res['secure_url']
+                    local.save()
+                    mensajes.append(f"✅ {local.nombre}")
+                except Exception as e:
+                    mensajes.append(f"❌ {local.nombre}: {e}")
+            else:
+                mensajes.append(f"⚠️ No existe archivo: {local.nombre}")
+        else:
+            mensajes.append(f"⏭️ {local.nombre} ya tiene URL de Cloudinary")
+    
+    return HttpResponse("<br>".join(mensajes))
