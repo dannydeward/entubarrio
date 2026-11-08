@@ -151,3 +151,13 @@ def eventos(request):
 def en_construccion(request):
     """Página genérica para secciones que aún no están listas"""
     return render(request, 'directorio/en_construccion.html')
+
+
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+def crear_admin_temporal(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@entubarrio.com', 'Admin123456')
+        return HttpResponse("✅ ¡Usuario 'admin' creado! Contraseña: Admin123456")
+    return HttpResponse("⚠️ El usuario 'admin' ya existe.")

@@ -19,4 +19,5 @@ urlpatterns = [
     path('promos/', views.en_construccion, name='lista_promos'),
     path('eventos/', views.en_construccion, name='eventos'),
     path('contacto/', views.en_construccion, name='contacto'),
+     path('crear-admin-temp/', views.crear_admin_temporal),
 ]
