@@ -156,8 +156,10 @@ def en_construccion(request):
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 
-def crear_admin_temporal(request):
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@entubarrio.com', 'Admin123456')
-        return HttpResponse("✅ ¡Usuario 'admin' creado! Contraseña: Admin123456")
-    return HttpResponse("⚠️ El usuario 'admin' ya existe.")
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+def crear_admin(request):
+    User.objects.filter(username='admin').delete()
+    User.objects.create_superuser('admin', 'dataconeccion@gmail.com', 'Admin123456')
+    return HttpResponse("Listo. Usuario: admin | Contraseña: Admin123456")
