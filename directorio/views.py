@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
-from .models import Local, Zona, Categoria, Promocion
 from django.utils import timezone
+from .models import Local, Zona, Categoria, Promocion
 
 
 def inicio(request):
@@ -26,7 +26,6 @@ def lista_locales(request):
     """Lista de todos los locales con filtros"""
     locales = Local.objects.filter(es_activo=True).select_related('zona', 'categoria')
     
-    # CAMBIO: ahora filtramos por id en lugar de slug
     zona_id = request.GET.get('zona')
     categoria_id = request.GET.get('categoria')
     busqueda = request.GET.get('q')
@@ -82,120 +81,4 @@ def lista_zonas(request):
     """Lista de todas las zonas"""
     zonas = Zona.objects.all()
     
-    for zona in zonas:
-        zona.total_locales = Local.objects.filter(zona=zona, es_activo=True).count()
-    
-    context = {
-        'zonas': zonas,
-    }
-    return render(request, 'directorio/lista_zonas.html', context)
-
-
-def locales_por_zona(request, zona_id):
-    """Locales filtrados por zona"""
-    zona = get_object_or_404(Zona, id=zona_id)
-    locales = Local.objects.filter(zona=zona, es_activo=True).select_related('zona', 'categoria')
-    
-    # Pasamos zonas y categorias para que los filtros del template funcionen
-    zonas = Zona.objects.all()
-    categorias = Categoria.objects.all()
-    
-    context = {
-        'locales': locales,
-        'zonas': zonas,
-        'categorias': categorias,
-        'titulo': f'Locales en {zona.nombre}',
-    }
-    return render(request, 'directorio/lista_locales.html', context)
-
-
-def locales_por_categoria(request, categoria_id):
-    """Locales filtrados por categoría"""
-    categoria = get_object_or_404(Categoria, id=categoria_id)
-    locales = Local.objects.filter(categoria=categoria, es_activo=True).select_related('zona', 'categoria')
-    
-    # Pasamos zonas y categorias para que los filtros del template funcionen
-    zonas = Zona.objects.all()
-    categorias = Categoria.objects.all()
-    
-    context = {
-        'locales': locales,
-        'zonas': zonas,
-        'categorias': categorias,
-        'titulo': f'Locales en {categoria.nombre}',
-    }
-    return render(request, 'directorio/lista_locales.html', context)
-
-def lista_categorias(request):
-    """Lista de todas las categorías"""
-    categorias = Categoria.objects.all()
-    
-    # Contar locales por categoría
-    for categoria in categorias:
-        categoria.total_locales = Local.objects.filter(categoria=categoria, es_activo=True).count()
-    
-    context = {
-        'categorias': categorias,
-    }
-    return render(request, 'directorio/lista_categorias.html', context)
-
-def mapa(request):
-    return render(request, 'directorio/mapa.html')
-
-def lista_promos(request):
-    return render(request, 'directorio/lista_promos.html')
-
-def eventos(request):
-    return render(request, 'directorio/eventos.html')
-
-def en_construccion(request):
-    """Página genérica para secciones que aún no están listas"""
-    return render(request, 'directorio/en_construccion.html')
-
-
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-
-def crear_admin(request):
-    User.objects.filter(username='admin').delete()
-    User.objects.create_superuser('admin', 'dataconeccion@gmail.com', 'Admin123456')
-    return HttpResponse("Listo. Usuario: admin | Contraseña: Admin123456")
-
-
-
-import os
-import cloudinary
-import cloudinary.uploader
-from django.conf import settings
-from django.http import HttpResponse
-
-def migrar_fotos(request):
-    cloudinary.config(
-        cloud_name="wdeufiiu",
-        api_key="572733275461677",
-        api_secret="sTozNrIkr7L0sLRcaWpRqwGdqUQ"
-    )
-    
-    from directorio.models import Local
-    mensajes = []
-    
-    for local in Local.objects.all():
-        if local.imagen and 'res.cloudinary.com' not in str(local.imagen):
-            ruta = os.path.join(settings.MEDIA_ROOT, str(local.imagen).replace('/media/', ''))
-            if os.path.exists(ruta):
-                try:
-                    res = cloudinary.uploader.upload(ruta, folder="locales")
-                    local.imagen = res['secure_url']
-                    local.save()
-                    mensajes.append(f"✅ {local.nombre}")
-                except Exception as e:
-                    mensajes.append(f"❌ {local.nombre}: {e}")
-            else:
-                mensajes.append(f"⚠️ No existe archivo: {local.nombre}")
-        else:
-            mensajes.append(f"⏭️ {local.nombre} ya tiene URL de Cloudinary")
-    
-    return HttpResponse("<br>".join(mensajes))
+    for zona in zonas
