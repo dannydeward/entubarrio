@@ -77,7 +77,7 @@ class Local(models.Model):
     
     dato_curioso = models.TextField(blank=True, help_text="Tip exclusivo del local")
     
-    imagen = models.URLField(max_length=500, blank=True, null=True)
+    imagen = models.ImageField(upload_to='locales/', blank=True, null=True)
     
     latitud = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True, help_text="Ej: -34.603722")
     longitud = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True, help_text="Ej: -58.381592")
