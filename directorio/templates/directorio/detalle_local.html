@@ -16,7 +16,7 @@
         <!-- Imagen Principal -->
         <div class="col-md-6 mb-4">
             {% if local.imagen %}
-                <img src="{{ local.imagen.url }}" class="img-fluid rounded shadow-sm" alt="{{ local.nombre }}" style="width: 100%; max-height: 400px; object-fit: cover;">
+                <img src="{{ local.imagen.url }}" alt="{{ local.nombre }}" class="img-fluid rounded shadow-sm" style="width: 100%; max-height: 400px; object-fit: cover;">
             {% else %}
                 <div class="bg-light rounded d-flex align-items-center justify-content-center shadow-sm" style="height: 400px;">
                     <i class="bi bi-shop display-1 text-muted"></i>

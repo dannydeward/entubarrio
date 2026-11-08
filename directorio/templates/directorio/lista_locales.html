@@ -49,7 +49,7 @@
         <div class="col-md-6 col-lg-4">
             <div class="card card-local h-100">
                 {% if local.imagen %}
-                <img src="{{ local.imagen.url }}" class="card-img-top" alt="{{ local.nombre }}" style="height: 200px; object-fit: cover;">
+                <img src="{{ local.imagen.url }}" alt="{{ local.nombre }}" class="img-fluid rounded shadow-sm" style="width: 100%; max-height: 400px; object-fit: cover;">
                 {% else %}
                 <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
                     <i class="bi bi-shop display-1 text-muted"></i>
