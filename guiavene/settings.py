@@ -108,6 +108,7 @@ if CLOUDINARY_STORAGE['CLOUD_NAME']:
     DEFAULT_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 else:
     DEFAULT_STORAGE = 'django.core.files.storage.FileSystemStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
  
 STORAGES = {
     'default': {'BACKEND': DEFAULT_STORAGE},
