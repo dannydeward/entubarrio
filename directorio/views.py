@@ -4,6 +4,12 @@ from django.utils import timezone
 from .models import Local, Zona, Categoria, Promocion
 
 
+from django.http import HttpResponse
+from django.contrib.auth import get_user_model
+from django.conf import settings
+from django.db import connection
+
+
 def inicio(request):
     """Página principal con locales destacados"""
     locales_destacados = Local.objects.filter(
@@ -154,10 +160,7 @@ def en_construccion(request):
     return render(request, 'directorio/en_construccion.html')
 
 
-from django.http import HttpResponse
-from django.contrib.auth import get_user_model
-from django.conf import settings
-from django.db import connection
+
 
 
 def diagnostico_temporal(request):
