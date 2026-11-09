@@ -152,3 +152,29 @@ def eventos(request):
 def en_construccion(request):
     """Página genérica para secciones que aún no están listas"""
     return render(request, 'directorio/en_construccion.html')
+
+
+from django.http import HttpResponse
+from django.contrib.auth import get_user_model
+from django.conf import settings
+from django.db import connection
+
+
+def diagnostico_temporal(request):
+    if request.GET.get('clave') != 'verificar-2026':
+        return HttpResponse('No autorizado', status=403)
+
+    User = get_user_model()
+
+    usuario = User.objects.filter(username='chu').first()
+
+    resultado = {
+        'DATABASE_HOST': connection.settings_dict.get('HOST'),
+        'DATABASE_NAME': connection.settings_dict.get('NAME'),
+        'USUARIO_CHU_EXISTE': usuario is not None,
+        'ES_STAFF': usuario.is_staff if usuario else None,
+        'ES_SUPERUSER': usuario.is_superuser if usuario else None,
+        'ESTA_ACTIVO': usuario.is_active if usuario else None,
+    }
+
+    return HttpResponse(str(resultado), content_type='text/plain')

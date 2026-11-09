@@ -1,0 +1,593 @@
+[
+{
+  "model": "directorio.zona",
+  "pk": 1,
+  "fields": {
+    "nombre": "Agronomia",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 2,
+  "fields": {
+    "nombre": "Almagro",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 3,
+  "fields": {
+    "nombre": "Balvanera",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 4,
+  "fields": {
+    "nombre": "Barracas",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 5,
+  "fields": {
+    "nombre": "Belgrano",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 6,
+  "fields": {
+    "nombre": "Boedo",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 7,
+  "fields": {
+    "nombre": "Caballito",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 8,
+  "fields": {
+    "nombre": "Chacarita",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 9,
+  "fields": {
+    "nombre": "Coghlan",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 10,
+  "fields": {
+    "nombre": "Colegiales",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 11,
+  "fields": {
+    "nombre": "Constitucion",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 12,
+  "fields": {
+    "nombre": "Flores",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 13,
+  "fields": {
+    "nombre": "Floresta",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 14,
+  "fields": {
+    "nombre": "La Boca",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 15,
+  "fields": {
+    "nombre": "La Paternal",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 16,
+  "fields": {
+    "nombre": "Liniers",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 17,
+  "fields": {
+    "nombre": "Mataderos",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 18,
+  "fields": {
+    "nombre": "Monserrat",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 19,
+  "fields": {
+    "nombre": "Monte Castro",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 20,
+  "fields": {
+    "nombre": "Nueva Pompeya",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 21,
+  "fields": {
+    "nombre": "Parque Chacabuco",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 22,
+  "fields": {
+    "nombre": "Parque Chas",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 23,
+  "fields": {
+    "nombre": "Parque Patricios",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 24,
+  "fields": {
+    "nombre": "Puerto Madero",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 25,
+  "fields": {
+    "nombre": "Recoleta",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 26,
+  "fields": {
+    "nombre": "Retiro",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 27,
+  "fields": {
+    "nombre": "Saavedra",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 28,
+  "fields": {
+    "nombre": "San Cristóbal",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 29,
+  "fields": {
+    "nombre": "San Nicolás",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 30,
+  "fields": {
+    "nombre": "San Telmo",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 31,
+  "fields": {
+    "nombre": "Vélez Sarsfield",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 32,
+  "fields": {
+    "nombre": "Versalles",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 33,
+  "fields": {
+    "nombre": "Villa Crespo",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 34,
+  "fields": {
+    "nombre": "Villa del Parque",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 35,
+  "fields": {
+    "nombre": "Villa Devoto",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 36,
+  "fields": {
+    "nombre": "Villa General Mitre",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 37,
+  "fields": {
+    "nombre": "Villa Lugano",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 38,
+  "fields": {
+    "nombre": "Villa Luro",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 39,
+  "fields": {
+    "nombre": "Villa Ortúzar",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 40,
+  "fields": {
+    "nombre": "Villa Pueyrredón",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 41,
+  "fields": {
+    "nombre": "Villa Real",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 42,
+  "fields": {
+    "nombre": "Villa Riachuelo",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 43,
+  "fields": {
+    "nombre": "Villa Santa Rita",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 44,
+  "fields": {
+    "nombre": "Villa Soldati",
+    "region": "CABA",
+    "descripcion": ""
+  }
+},
+{
+  "model": "directorio.zona",
+  "pk": 45,
+  "fields": {
+    "nombre": "Lomas de Zamora",
+    "region": "PROVINCIA",
+    "descripcion": "Municipalidad de Lomas de Zamora en la Provincia del Buenos Aires"
+  }
+},
+{
+  "model": "directorio.categoria",
+  "pk": 1,
+  "fields": {
+    "nombre": "Restaurante",
+    "tipo": "gastronomia",
+    "icono": "🍽️",
+    "descripcion": "En esta sección  encontraras diferentes locales de comida:\r\nArepas\r\n tequeños\r\n Pizza\r\n Pasta\r\nSushi\r\nHamburguesas \r\nMatadores\r\nPanchos\r\nComida vegana por encargo\r\nComida por encargo\r\nTortas y dulces\r\nPanaderia\r\nEmpanadas\r\nPasteles"
+  }
+},
+{
+  "model": "directorio.categoria",
+  "pk": 2,
+  "fields": {
+    "nombre": "Mantenimiento",
+    "tipo": "servicios",
+    "icono": "🛠️",
+    "descripcion": "en esta sección tenemos servicios de mantenimiento:\r\n\r\nmecánicos  auto\r\nmecánico moto\r\nmecánico bicicleta\r\nMantenimiento de Aires acondicionados\r\nmantenimiento de lavaropas y secaropas\r\nMantenimiento de heladeras\r\nLimpieza del hogar\r\nalbañiles"
+  }
+},
+{
+  "model": "directorio.categoria",
+  "pk": 3,
+  "fields": {
+    "nombre": "Belleza",
+    "tipo": "belleza",
+    "icono": "✨",
+    "descripcion": "En esta sección encontraras:\r\n\r\nservicios de masajes\r\nArreglo de uñas de las manos\r\nArreglo de uñas de los pies\r\nlimpieza de cutis\r\nPeluquería dama\r\nPeluquería Caballero\r\nMaquillaje"
+  }
+},
+{
+  "model": "directorio.categoria",
+  "pk": 4,
+  "fields": {
+    "nombre": "Locales Comerciales",
+    "tipo": "comercios",
+    "icono": "🏬",
+    "descripcion": "En esta Seccion tenemos: \r\n\r\nVerduleria\r\nCharcuteria\r\nKioskos\r\nTiendas de mascotas\r\nTiendas de ropa"
+  }
+},
+{
+  "model": "directorio.categoria",
+  "pk": 5,
+  "fields": {
+    "nombre": "Servicios Profesionales",
+    "tipo": "servicios",
+    "icono": "🧑‍🎓",
+    "descripcion": "En esta seccion encontraras;\r\n\r\nMédicos\r\nEnfermeras\r\nEducadores\r\nIngenieros\r\nCuidadores de Personas \r\nPaseadores de Perros\r\nNiñeras\r\nContadores\r\nProgramadores\r\nServicios de Traslado\r\nMoto mensajeros \r\nChef\r\nMesoneros\r\nAbogados\r\nPeriodistas"
+  }
+},
+{
+  "model": "directorio.categoria",
+  "pk": 6,
+  "fields": {
+    "nombre": "Servicios tecnicos",
+    "tipo": "servicios_tecnicos",
+    "icono": "🔧",
+    "descripcion": "En esta categoría encontraras :\r\n\r\nPlomeros\r\nElectricistas\r\nGasistas\r\nMecánicos\r\nAlbañiles\r\nEmpapeladores\r\nPintores\r\nColocadores de malla\r\nImpermealizadores"
+  }
+},
+{
+  "model": "directorio.categoria",
+  "pk": 7,
+  "fields": {
+    "nombre": "Diseño e Imagen",
+    "tipo": "diseno_imagen",
+    "icono": "🎨",
+    "descripcion": "En esta sección encontraras\r\n\r\nimpresión\r\nsublimación\r\nDiseño\r\nMaquetación\r\ndesarrollo web \r\nMarketing Digital"
+  }
+},
+{
+  "model": "directorio.local",
+  "pk": 1,
+  "fields": {
+    "nombre": "La Perrera",
+    "zona": 30,
+    "categoria": 1,
+    "descripcion_corta": "Comida Rapida Venezolana y Argentina",
+    "descripcion_completa": "Somos la Perrera, traemos comida rápida Venezolana:\r\n\r\nPerros Calientes(panchos)\r\nHambuerguesas\r\nArepas\r\nTequeños\r\n\r\nY como rapida argentina\r\nChoripan\r\nSandiwch de MIlanesa\r\nSandiwch de Bondiola\r\n\r\npuedes pedirnos por whatsapp o por Instagram",
+    "direccion": "Brasil 353",
+    "instagram": "https://www.instagram.com/la_perrerafood?rpxt=MTFv-",
+    "whatsapp": "+541134045324",
+    "telefono": "1134045324",
+    "email": "perrerafood@gmail.com",
+    "sitio_web": "https://www.instagram.com/la_perrerafood?rpxt=MTFv-",
+    "horarios": "de lunes a sabado de 20 horas a las 2",
+    "foto1": "locales/fotos/images_1_yY0uZVC.jfif",
+    "foto2": "locales/fotos/images_2_qBfx87l.jfif",
+    "foto3": "locales/fotos/arepa_pollo.jfif",
+    "dato_curioso": "",
+    "imagen": "locales/PERRERA_tcigtYd.png",
+    "latitud": null,
+    "longitud": null,
+    "es_activo": true,
+    "es_destacado": false,
+    "fecha_creacion": "2026-10-30T17:41:26.388Z",
+    "fecha_actualizacion": "2026-11-08T01:41:16.188Z"
+  }
+},
+{
+  "model": "directorio.local",
+  "pk": 2,
+  "fields": {
+    "nombre": "MODOPRINT",
+    "zona": 2,
+    "categoria": 5,
+    "descripcion_corta": "personalizamos tus ideas, diseños unicos calidad premium",
+    "descripcion_completa": "en Modo Print hacemos realidad tu idea, con estampados de alta calidad en :\r\n\r\ngorras, remeras, bolsos tazas",
+    "direccion": "Barrio Almagro",
+    "instagram": "https://www.instagram.com/print.modo?cplk=Y2lw0TdjanFjaF1",
+    "whatsapp": "1132839741",
+    "telefono": "1132839741",
+    "email": "",
+    "sitio_web": "https://www.instagram.com/print.modo?cplk=Y2lw0TdjanFjaF1",
+    "horarios": "Lunes a Sabado de 9 a 19",
+    "foto1": "locales/fotos/modo_prin_flayer.jpeg",
+    "foto2": "",
+    "foto3": "",
+    "dato_curioso": "",
+    "imagen": "locales/modoprint_logo.jpeg",
+    "latitud": null,
+    "longitud": null,
+    "es_activo": true,
+    "es_destacado": false,
+    "fecha_creacion": "2026-11-08T00:16:59.186Z",
+    "fecha_actualizacion": "2026-11-08T00:25:34.091Z"
+  }
+},
+{
+  "model": "directorio.local",
+  "pk": 3,
+  "fields": {
+    "nombre": "Quesos Don Cheo",
+    "zona": 45,
+    "categoria": 4,
+    "descripcion_corta": "Venta de Queso Duro y Semiduro",
+    "descripcion_completa": "fabricamos y vendemos quesos Venezolanos al mayor y  menor\r\n\r\nQueso Duro\r\nQueso semiduro\r\nNata Llanera",
+    "direccion": "Madrid  95",
+    "instagram": "https://www.instagram.com/quesosdoncheo?rpxt=MTFv-",
+    "whatsapp": "1156170789",
+    "telefono": "1156170789",
+    "email": "",
+    "sitio_web": "https://www.instagram.com/quesosdoncheo?rpxt=MTFv-",
+    "horarios": "Lunes  a sábado  9-19hs",
+    "foto1": "",
+    "foto2": "",
+    "foto3": "",
+    "dato_curioso": "",
+    "imagen": "locales/don_cheo.jpeg",
+    "latitud": null,
+    "longitud": null,
+    "es_activo": true,
+    "es_destacado": false,
+    "fecha_creacion": "2026-11-08T01:41:01.556Z",
+    "fecha_actualizacion": "2026-11-08T01:42:42.201Z"
+  }
+},
+{
+  "model": "directorio.local",
+  "pk": 4,
+  "fields": {
+    "nombre": "FALU EVENTOS",
+    "zona": 6,
+    "categoria": 5,
+    "descripcion_corta": "Ambientación de fiestas infantiles, decoraciones personalizadas",
+    "descripcion_completa": "Ambientación de fiestas infantiles,  Y CREAMOS decoraciones personalizadas para que tus celebraciones sean innolvidables",
+    "direccion": "Boedo-CABA",
+    "instagram": "https://www.instagram.com/falu_eventos?rpxt=MTFv-",
+    "whatsapp": "1134208823",
+    "telefono": "1134208823",
+    "email": "",
+    "sitio_web": "https://www.instagram.com/falu_eventos?rpxt=MTFv-",
+    "horarios": "Lunas a sabado de 9 18",
+    "foto1": "",
+    "foto2": "",
+    "foto3": "",
+    "dato_curioso": "",
+    "imagen": "locales/WhatsApp_Image_2026-11-04_at_20.07.07.jpeg",
+    "latitud": null,
+    "longitud": null,
+    "es_activo": true,
+    "es_destacado": false,
+    "fecha_creacion": "2026-11-08T03:22:59.157Z",
+    "fecha_actualizacion": "2026-11-08T03:23:23.734Z"
+  }
+}
+]
