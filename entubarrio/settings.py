@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'directorio',
 ]
+#hola
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
