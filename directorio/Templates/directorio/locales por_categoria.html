@@ -1,0 +1,32 @@
+{% extends 'directorio/base.html' %}
+{% block title %}{{ categoria.nombre }} - EnTuBarrio{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Locales en {{ categoria.nombre }}</h1>
+    <div class="row g-4">
+        {% for local in locales %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card card-local h-100">
+                <div class="card-body">
+                    <span class="badge badge-categoria mb-2">{{ local.categoria.icono }} {{ local.categoria.nombre }}</span>
+                    <h5 class="card-title">{{ local.nombre }}</h5>
+                    <p class="card-text small text-muted">{{ local.descripcion_corta }}</p>
+                    {% if local.horarios %}
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-clock-fill"></i> {{ local.horarios }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer bg-white">
+                    <a href="{% url 'directorio:detalle_local' local.id %}" class="btn btn-outline-primary w-100">Ver detalles</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">No hay locales en esta categoría todavía.</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
