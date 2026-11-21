@@ -1,0 +1,25 @@
+{% extends 'directorio/base.html' %}
+{% block title %}Crear Cuenta - EnTuBarrio{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm p-4">
+                <h3 class="text-center mb-4">Crear Cuenta</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}<div class="text-danger small">{{ field.errors }}</div>{% endif %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary w-100">Registrarme</button>
+                </form>
+                <p class="text-center mt-3 small">¿Ya tenés cuenta? <a href="{% url 'directorio:login' %}">Ingresá</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

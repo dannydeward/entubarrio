@@ -27,6 +27,19 @@
                 <a href="/zonas/" class="menu-link {% if 'zonas' in request.path %}active{% endif %}">Zonas</a>
                 <a href="/categorias/" class="menu-link {% if 'categorias' in request.path %}active{% endif %}">Categorías</a>
                 <a href="/promos/" class="menu-link">Promos</a>
+                <!-- NUEVO: Botones de autenticación usando las mismas clases existentes -->
+   {% if request.user.is_authenticated %}
+    <a href="{% url 'directorio:mi_panel' %}" class="menu-link"><i class="bi bi-person-circle"></i> Mi Panel</a>
+    <form method="POST" action="{% url 'directorio:logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="menu-link" style="background:none;border:none;cursor:pointer;color:inherit;font-family:inherit;font-size:inherit;padding:0;">Salir</button>
+    </form>
+{% else %}
+    <a href="{% url 'directorio:seleccionar_tipo' %}" class="menu-link"><i class="bi bi-box-arrow-in-right"></i> Login/Registrate</a>
+{% endif %}
+    
+    
+                
             </nav>
         </div>
     </header>
@@ -92,7 +105,7 @@
             
             <!-- Izquierda: Logo + Slogan + Créditos -->
             <div class="footer-left">
-                <img src="{% static 'directorio/img/logo sin fondo.png' %}" alt="EnTuBarrio" class="footer-logo">
+                <img src="{% static 'directorio/img/logovertical.jpg'%}" alt="EnTuBarrio" class="footer-logo">
                 <p class="footer-slogan">Todo lo que buscas cerca de ti</p>
                 <p class="footer-credit">Diseñado por Danny Ramirez</p>
             </div>

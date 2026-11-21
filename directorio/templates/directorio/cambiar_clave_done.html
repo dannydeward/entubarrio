@@ -1,0 +1,11 @@
+{% extends 'directorio/base.html' %}
+{% block title %}Clave Actualizada - EnTuBarrio{% endblock %}
+{% block content %}
+<div class="container py-5 text-center">
+    <div class="card shadow-sm p-5 mx-auto" style="max-width: 500px;">
+        <h3 class="text-success mb-3">¡Contraseña actualizada!</h3>
+        <p>Tu clave ha sido cambiada exitosamente.</p>
+        <a href="{% url 'directorio:mi_panel' %}" class="btn btn-primary mt-3">Volver al Panel</a>
+    </div>
+</div>
+{% endblock %}

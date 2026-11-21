@@ -1,0 +1,34 @@
+{% extends 'directorio/base.html' %}
+{% block title %}Editar {{ local.nombre }} - EnTuBarrio{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Editando: {{ local.nombre }}</h2>
+        <a href="{% url 'directorio:mi_panel' %}" class="btn btn-secondary btn-sm">Volver al Panel</a>
+    </div>
+
+    <div class="card shadow-sm p-4">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Renderizamos el formulario con clases de Bootstrap para que se vea bien -->
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label fw-bold">{{ field.label }}</label>
+                {% if field.help_text %}
+                    <small class="form-text text-muted d-block mb-1">{{ field.help_text }}</small>
+                {% endif %}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                <a href="{% url 'directorio:mi_panel' %}" class="btn btn-outline-secondary me-md-2">Cancelar</a>
+                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

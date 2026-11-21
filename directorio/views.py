@@ -1,7 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.utils import timezone
-from .models import Local, Zona, Categoria, Promocion
+from .models import Local, Zona, Categoria, Promocion, Evento
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.http import HttpResponseForbidden
+from .forms import LocalForm
+
+from .forms import PromocionForm
+from django.contrib import messages
+
+
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 
 
 
@@ -154,5 +167,172 @@ def en_construccion(request):
     """Página genérica para secciones que aún no están listas"""
     return render(request, 'directorio/en_construccion.html')
 
+@login_required
+def mi_panel(request):
+    mis_locales = Local.objects.filter(usuario=request.user)
+    context = {'mis_locales': mis_locales}
+    return render(request, 'directorio/mi_panel.html', context)
+
+@login_required
+def editar_local(request, local_id):
+    local = get_object_or_404(Local, id=local_id)
+    if local.usuario != request.user:
+        return HttpResponseForbidden("No tienes permiso para editar este local.")
+    
+    if request.method == 'POST':
+        form = LocalForm(request.POST, request.FILES, instance=local)
+        if form.is_valid():
+            form.save()
+            return redirect('directorio:mi_panel')
+    else:
+        form = LocalForm(instance=local)
+    
+    context = {'form': form, 'local': local}
+    return render(request, 'directorio/editar_local.html', context)
 
 
+@login_required
+def mis_promos(request):
+    """Lista las promos del cliente"""
+    mis_locales = Local.objects.filter(usuario=request.user)
+    promos = Promocion.objects.filter(local__in=mis_locales).order_by('-fecha_inicio')
+    return render(request, 'directorio/mis_promos.html', {'promos': promos})
+
+@login_required
+def crear_promo(request):
+    """Crear nueva promo"""
+    mis_locales = Local.objects.filter(usuario=request.user)
+    if not mis_locales.exists():
+        messages.error(request, "Primero debés tener un local asignado.")
+        return redirect('directorio:mi_panel')
+
+    if request.method == 'POST':
+        form = PromocionForm(request.POST)
+        if form.is_valid():
+            promo = form.save(commit=False)
+            promo.local = mis_locales.first()  # Asigna al primer local del usuario
+            promo.save()
+            messages.success(request, "¡Promoción creada con éxito!")
+            return redirect('directorio:mis_promos')
+    else:
+        form = PromocionForm()
+    return render(request, 'directorio/form_promo.html', {'form': form, 'titulo': 'Nueva Promoción'})
+
+@login_required
+def editar_promo(request, promo_id):
+    """Editar promo existente"""
+    promo = get_object_or_404(Promocion, id=promo_id, local__usuario=request.user)
+    if request.method == 'POST':
+        form = PromocionForm(request.POST, instance=promo)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Promoción actualizada.")
+            return redirect('directorio:mis_promos')
+    else:
+        form = PromocionForm(instance=promo)
+    return render(request, 'directorio/form_promo.html', {'form': form, 'titulo': 'Editar Promoción'})
+
+@login_required
+def eliminar_promo(request, promo_id):
+    """Eliminar promo"""
+    promo = get_object_or_404(Promocion, id=promo_id, local__usuario=request.user)
+    if request.method == 'POST':
+        promo.delete()
+        messages.success(request, "Promoción eliminada.")
+    return redirect('directorio:mis_promos')
+
+
+from .forms import LocalForm, PromocionForm, EventoForm # <--- Agrega EventoForm
+
+
+
+@login_required
+def mis_eventos(request):
+    mis_locales = Local.objects.filter(usuario=request.user)
+    eventos = Evento.objects.filter(local__in=mis_locales).order_by('-fecha')
+    return render(request, 'directorio/mis_eventos.html', {'eventos': eventos})
+
+@login_required
+def crear_evento(request):
+    mis_locales = Local.objects.filter(usuario=request.user)
+    if not mis_locales.exists():
+        messages.error(request, "Primero debés tener un local asignado.")
+        return redirect('directorio:mi_panel')
+
+    if request.method == 'POST':
+        form = EventoForm(request.POST)
+        if form.is_valid():
+            evento = form.save(commit=False)
+            evento.local = mis_locales.first()
+            evento.save()
+            messages.success(request, "¡Evento creado con éxito!")
+            return redirect('directorio:mis_eventos')
+    else:
+        form = EventoForm()
+    return render(request, 'directorio/form_evento.html', {'form': form, 'titulo': 'Nuevo Evento'})
+
+@login_required
+def eliminar_evento(request, evento_id):
+    evento = get_object_or_404(Evento, id=evento_id, local__usuario=request.user)
+    if request.method == 'POST':
+        evento.delete()
+        messages.success(request, "Evento eliminado.")
+    return redirect('directorio:mis_eventos')
+
+
+from django.core.mail import send_mail
+from django.conf import settings
+
+def contacto(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        email = request.POST.get('email')
+        asunto = request.POST.get('asunto')
+        mensaje = request.POST.get('mensaje')
+        
+        # Envía el mail (ahora mismo se imprime en la consola de VS Code)
+        send_mail(
+            subject=f"Contacto EnTuBarrio: {asunto}",
+            message=f"De: {nombre} ({email})\n\n{mensaje}",
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=['dataconeccion@gmail.com'], # Tu email
+            fail_silently=False,
+        )
+        messages.success(request, "¡Mensaje enviado con éxito! Te responderemos pronto.")
+        return redirect('directorio:contacto')
+        
+    return render(request, 'directorio/contacto.html')
+
+
+def seleccionar_tipo(request):
+    return render(request, 'directorio/seleccionar_tipo.html')
+
+def registrar_usuario(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('directorio:inicio')
+    else:
+        form = UserCreationForm()
+    return render(request, 'directorio/registro.html', {'form': form})
+
+from django.contrib.auth.forms import UserCreationForm
+
+def registro_vecino(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('directorio:login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'directorio/registro_vecino.html', {'form': form})
+
+
+
+
+class LoginVecinoView(LoginView):
+    template_name = 'directorio/login_vecino.html'
+    redirect_authenticated_user = True

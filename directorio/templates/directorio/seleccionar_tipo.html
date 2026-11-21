@@ -1,0 +1,24 @@
+{% extends 'directorio/base.html' %}
+{% block title %}Acceso - EnTuBarrio{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center mb-4">¿Cómo querés entrar?</h2>
+    <div class="row justify-content-center g-4">
+        <div class="col-md-5">
+            <div class="card shadow-sm text-center p-4">
+                <h4>Soy Vecino</h4>
+                <p class="text-muted">Explorá locales, guardá favoritos y creá tu cuenta.</p>
+                <a href="{% url 'directorio:login' %}?next=/" class="btn btn-primary w-100 mb-2">Soy Vecino</a>
+                <a href="{% url 'directorio:registro' %}" class="btn btn-outline-primary mt-2">Crear Cuenta</a>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card shadow-sm text-center p-4">
+                <h4>Soy Asociado</h4>
+                <p class="text-muted">Gestioná tu local, promos y eventos.</p>
+                <a href="{% url 'directorio:login' %}?next=/mi-panel/" class="btn btn-success w-100">Soy Asociado</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

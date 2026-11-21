@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User 
 
 
 class Zona(models.Model):
@@ -47,7 +48,17 @@ class Categoria(models.Model):
 
 class Local(models.Model):
     nombre = models.CharField(max_length=200)
+
+    usuario = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        related_name='locales',
+        help_text="Usuario encargado de autogestionar este local"
+    )
     
+       
     zona = models.ForeignKey(Zona, on_delete=models.SET_NULL, null=True, related_name='locales')
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, related_name='locales')
     
@@ -116,3 +127,20 @@ class Promocion(models.Model):
     
     def __str__(self):
         return f"{self.local.nombre} - {self.titulo}"
+
+
+class Evento(models.Model):
+        local = models.ForeignKey(Local, on_delete=models.CASCADE, related_name='eventos')
+        titulo = models.CharField(max_length=200)
+        descripcion = models.TextField()
+        fecha = models.DateField()
+        hora = models.TimeField(blank=True, null=True)
+        es_activo = models.BooleanField(default=True)
+    
+        class Meta:
+            verbose_name = "Evento"
+            verbose_name_plural = "Eventos"
+            ordering = ['-fecha']
+        
+            def __str__(self):
+                return f"{self.local.nombre} - {self.titulo}"

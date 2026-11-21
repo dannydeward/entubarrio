@@ -147,3 +147,7 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+LOGIN_URL = 'directorio:login'
+LOGIN_REDIRECT_URL = 'directorio:mi_panel'
+LOGOUT_REDIRECT_URL = 'directorio:inicio'
