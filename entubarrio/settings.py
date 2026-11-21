@@ -120,16 +120,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
-# Email
-# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
-
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}
-
-
 # Configuración de medios (imágenes subidas)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -153,20 +143,17 @@ LOGIN_REDIRECT_URL = 'directorio:mi_panel'
 LOGOUT_REDIRECT_URL = 'directorio:inicio'
 
 
-# Nueva configuración de Email para Django moderno (Render)
-import os
-
-# Configuración de Email para Django 6.1+ (Render)
+# --- CONFIGURACIÓN DE EMAIL (Pegar al FINAL de settings.py) ---
 MAILERS = {
     "default": {
         "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
         "OPTIONS": {
             "host": "smtp.gmail.com",
             "port": 587,
-            "use_tls": True,
             "username": "dataconeccion@gmail.com",
             "password": os.environ.get("EMAIL_HOST_PASSWORD", ""),
-        },
+            "use_tls": True,
+        }
     }
 }
 DEFAULT_FROM_EMAIL = "dataconeccion@gmail.com"
