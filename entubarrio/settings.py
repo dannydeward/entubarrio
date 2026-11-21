@@ -153,11 +153,15 @@ LOGIN_REDIRECT_URL = 'directorio:mi_panel'
 LOGOUT_REDIRECT_URL = 'directorio:inicio'
 
 
-# Configuración de Email para Producción (Render)
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'dataconeccion@gmail.com'  # Tu correo
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')  
-DEFAULT_FROM_EMAIL = 'dataconeccion@gmail.com'
+# Nueva configuración de Email para Django moderno (Render)
+MAILERS = {
+    "default": {
+        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+        "HOST": "smtp.gmail.com",
+        "PORT": 587,
+        "USE_TLS": True,
+        "USER": "dataconeccion@gmail.com",
+        "PASSWORD": os.environ.get("EMAIL_HOST_PASSWORD", ""),
+    }
+}
+DEFAULT_FROM_EMAIL = "dataconeccion@gmail.com"
