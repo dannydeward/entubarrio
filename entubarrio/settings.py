@@ -154,14 +154,19 @@ LOGOUT_REDIRECT_URL = 'directorio:inicio'
 
 
 # Nueva configuración de Email para Django moderno (Render)
+import os
+
+# Configuración de Email para Django 6.1+ (Render)
 MAILERS = {
     "default": {
         "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
-        "HOST": "smtp.gmail.com",
-        "PORT": 587,
-        "USE_TLS": True,
-        "USER": "dataconeccion@gmail.com",
-        "PASSWORD": os.environ.get("EMAIL_HOST_PASSWORD", ""),
+        "OPTIONS": {
+            "host": "smtp.gmail.com",
+            "port": 587,
+            "use_tls": True,
+            "username": "dataconeccion@gmail.com",
+            "password": os.environ.get("EMAIL_HOST_PASSWORD", ""),
+        },
     }
 }
 DEFAULT_FROM_EMAIL = "dataconeccion@gmail.com"
