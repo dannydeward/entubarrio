@@ -357,4 +357,4 @@ def contacto(request):
         messages.success(request, "¡Mensaje enviado! Te responderemos pronto.")
         return redirect('directorio:contacto')
         
-    return render(request, 'directorio/contacto.html')
+    return render(request, 'directorio/aparecer.html')
