@@ -20,7 +20,7 @@ urlpatterns = [
     path('mapa/', views.en_construccion, name='mapa'),
     path('promos/', views.en_construccion, name='lista_promos'),
     path('eventos/', views.en_construccion, name='eventos'),
-    path('contacto/', views.en_construccion, name='contacto'),
+    path('contacto/', views.contacto, name='contacto'),
 
       # --- NUEVAS RUTAS DEL PANEL DE AUTOGESTIÓN ---
     path('mi-panel/', views.mi_panel, name='mi_panel'),
@@ -49,6 +49,6 @@ urlpatterns = [
 # ... dentro de urlpatterns ...
 path('cambiar-clave/', auth_views.PasswordChangeView.as_view(template_name='directorio/cambiar_clave.html', success_url='/cambiar-clave/done/'), name='cambiar_clave'),
 path('cambiar-clave/done/', auth_views.PasswordChangeDoneView.as_view(template_name='directorio/cambiar_clave_done.html'), name='cambiar_clave_done'),
-    
-    
+  
+     
 ]

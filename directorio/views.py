@@ -16,6 +16,10 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
+
 
 
 def inicio(request):
@@ -331,8 +335,26 @@ def registro_vecino(request):
     return render(request, 'directorio/registro_vecino.html', {'form': form})
 
 
-
-
 class LoginVecinoView(LoginView):
     template_name = 'directorio/login_vecino.html'
     redirect_authenticated_user = True
+
+
+def contacto(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        email = request.POST.get('email')
+        asunto = request.POST.get('asunto')
+        mensaje = request.POST.get('mensaje')
+        
+        send_mail(
+            subject=f"Contacto EnTuBarrio: {asunto}",
+            message=f"De: {nombre} ({email})\n\n{mensaje}",
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=['dataconeccion@gmail.com'],
+            fail_silently=False,
+        )
+        messages.success(request, "¡Mensaje enviado! Te responderemos pronto.")
+        return redirect('directorio:contacto')
+        
+    return render(request, 'directorio/contacto.html')

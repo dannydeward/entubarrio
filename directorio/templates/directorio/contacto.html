@@ -1,0 +1,40 @@
+{% extends 'directorio/base.html' %}
+{% block title %}Contacto - EnTuBarrio{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h2 class="text-center mb-4">Contáctanos</h2>
+            
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="card shadow-sm p-4">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Asunto</label>
+                        <input type="text" name="asunto" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Mensaje</label>
+                        <textarea name="mensaje" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
