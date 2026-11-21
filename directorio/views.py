@@ -16,10 +16,6 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 
-from django.core.mail import send_mail
-from django.conf import settings
-from django.contrib import messages
-
 
 
 def inicio(request):
@@ -357,4 +353,7 @@ def contacto(request):
         messages.success(request, "¡Mensaje enviado! Te responderemos pronto.")
         return redirect('directorio:contacto')
         
+    return render(request, 'directorio/contacto.html')
+
+def aparecer(request):
     return render(request, 'directorio/aparecer.html')

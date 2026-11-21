@@ -20,7 +20,8 @@ urlpatterns = [
     path('mapa/', views.en_construccion, name='mapa'),
     path('promos/', views.en_construccion, name='lista_promos'),
     path('eventos/', views.en_construccion, name='eventos'),
-    path('aparecer/', views.contacto, name='aparecer'),
+    path('contacto/', views.en_construccion, name='contacto'),
+    path('aparecer/', views.aparecer, name='aparecer'),
 
       # --- NUEVAS RUTAS DEL PANEL DE AUTOGESTIÓN ---
     path('mi-panel/', views.mi_panel, name='mi_panel'),
